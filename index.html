@@ -45,7 +45,8 @@
                     pos3 = e.clientX;
                     pos4 = e.clientY;
                 } else if (e.type === "touchmove" && e.targetTouches.length === 1) {
-                    var touch = e.targetTouches[0];
+                    e.preventDefault();  
+                   var touch = e.targetTouches[0];
                     pos1 = pos3 - touch.clientX;
                     pos2 = pos4 - touch.clientY;
                     pos3 = touch.clientX;
