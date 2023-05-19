@@ -3,10 +3,81 @@
    <head>
       <title>Khwabeeeda</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+      
+      <style>
+        
+
+        .draggable {
+            position: absolute;
+            cursor: move;
+        }
+    </style>
+    <script>
+        function dragElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            elmnt.addEventListener("mousedown", dragMouseDown);
+            elmnt.addEventListener("touchstart", dragTouchStart);
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function dragTouchStart(e) {
+                if (e.targetTouches.length === 1) {
+                    var touch = e.targetTouches[0];
+                    pos3 = touch.clientX;
+                    pos4 = touch.clientY;
+                    document.ontouchend = closeDragElement;
+                    document.ontouchmove = elementDrag;
+                }
+            }
+
+            function elementDrag(e) {
+                if (e.type === "mousemove") {
+                    e.preventDefault();
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                } else if (e.type === "touchmove" && e.targetTouches.length === 1) {
+                    var touch = e.targetTouches[0];
+                    pos1 = pos3 - touch.clientX;
+                    pos2 = pos4 - touch.clientY;
+                    pos3 = touch.clientX;
+                    pos4 = touch.clientY;
+                }
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+                document.ontouchend = null;
+                document.ontouchmove = null;
+            }
+        }
+    </script>
    </head>
+   
    <body>
       
+<img id="image1" class="draggable" src="Assets/span.png" style="top: 100px; left: 100px;" width="200" height="200">
+    <img id="image2" class="draggable" src="Assets/span4.png" style="top: 300px; left: 300px;" width="200" height="200">
+    <!-- Add more images as needed -->
 
+    <script>
+        // Make images draggable
+        var draggableImages = document.getElementsByClassName("draggable");
+        for (var i = 0; i < draggableImages.length; i++) {
+            dragElement(draggableImages[i]);
+        }
+    </script>
 
 
 
