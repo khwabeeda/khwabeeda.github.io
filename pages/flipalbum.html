@@ -17,6 +17,11 @@
     .gallery img {
       width: 100%;
       object-fit: cover;
+      display: none; /* Hide all images by default */
+    }
+    
+    .gallery img:first-child {
+      display: block; /* Display the first image */
     }
     
     .gallery-controls {
@@ -43,7 +48,7 @@
     }
     
     .gallery-controls #nextButton {
-      background-image: url("assets/next-button.jpg"); /* Replace with your cus
+      background-image: url("assets/next-button.jpg"); /* Replace with your custom next button image */
     }
   </style>
 </head>
@@ -90,8 +95,6 @@
     
     prevButton.addEventListener('click', showPreviousImage);
     nextButton.addEventListener('click', showNextImage);
-    
-    showImage(currentIndex);
   </script>
 </body>
 </html>
