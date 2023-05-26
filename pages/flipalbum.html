@@ -15,25 +15,27 @@ img {vertical-align: middle;}
   margin: auto;
 }
 
-/* Next & previous buttons */
-/* Next & previous buttons */
 .prev, .next {
-  /* ... */
-  top: 0; /* Position the button at the top */
-  left: 0; /* Position the button on the left */
-  margin-top: 16px; /* Add some top margin for spacing */
-  margin-left: 16px; /* Add some left margin for spacing */
-  border-radius: 3px; /* Adjust border-radius as per your preference */
-}
+  cursor: pointer;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  width: auto;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 3px;
+  user-select: none;
+  background-color: rgba(0, 0, 0, 0.8);
+  }
 
-/* Position the "next button" to the right */
 .next {
-  /* ... */
-  left: auto; /* Remove left positioning to keep it on the right */
-  right: 0; /* Position the button on the right */
-  border-radius: 0 3px 3px 0; /* Adjust border-radius as per your preference */
+  left: auto;
+  right: 16px;
+  border-radius: 0 3px 3px 0;
 }
-
 
 
 
