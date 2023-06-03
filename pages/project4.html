@@ -50,6 +50,13 @@ I hear the words but I do not understand them, I know their meaning, I understan
     function updatePosition() {
       x += vx;
       y += vy;
+      
+      var imageRight = x + image.width;
+  var imageBottom = y + image.height;
+  var windowWidth = window.innerWidth;
+  var windowHeight = window.innerHeight;
+
+  var boundary = 10000;
 
       if (x + image.width >= window.innerWidth || x <= 0) {
         vx = -vx;
