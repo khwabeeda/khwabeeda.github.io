@@ -1,35 +1,50 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <script type="application/javascript">
-      var ctx = null;
-      var x_icon = 0;
-      var y_icon = 0;
-      var stepX = 1;
-      var stepY = 1;
-      var size_x = 23;
-      var size_y = 22;
-      var canvas_size_x = 480;
-      var canvas_size_y = 320;
-      var anim_img = null;
-      
-      function draw() {
-        var canvas = document.getElementById("canvas");
-        ctx = canvas.getContext("2d");
-        anim_img = new Image(size_x, size_y);
-        anim_img.onload = function() { setInterval('myAnimation()', 10); }
-        anim_img.src = 'assets/blackbird.png';
+<head>
+  <title>Bouncing Image</title>
+  <style>
+    #image {
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <img id="image" src="assets/blackbird.png" alt="Bouncing Image">
+  
+  <script>
+    // Get the image element
+    var image = document.getElementById("image");
+
+    // Set initial position and velocity
+    var x = 0;
+    var y = 0;
+    var vx = 5;
+    var vy = 5;
+
+    // Function to update the image position
+    function updatePosition() {
+      // Update the position
+      x += vx;
+      y += vy;
+
+      // Reverse the velocity if the image reaches the boundaries
+      if (x + image.width >= window.innerWidth || x <= 0) {
+        vx = -vx;
       }
-      function myAnimation() {
-        ctx.clearRect(0, 0, canvas_size_x, canvas_size_y);
-       if (x_icon < 0 || x_icon > canvas_size_x - size_x) {stepX = -stepX; }
-       if (y_icon < 0 || y_icon > canvas_size_y - size_y) {stepY = -stepY; }
-          x_icon += stepX;
-          y_icon += stepY;
-       ctx.drawImage(anim_img, x_icon, y_icon);
+      if (y + image.height >= window.innerHeight || y <= 0) {
+        vy = -vy;
       }
-    </script>
-  </head>
-  <body onload="draw();">
-    <canvas id="canvas" width="480" height="320" style="border:solid 1px;"></canvas>
-  </body>
+
+      // Set the new position
+      image.style.left = x + "px";
+      image.style.top = y + "px";
+
+      // Call the function again after a short delay
+      requestAnimationFrame(updatePosition);
+    }
+
+    // Call the function to start the animation
+    updatePosition();
+  </script>
+</body>
 </html>
