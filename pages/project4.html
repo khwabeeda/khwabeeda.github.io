@@ -1,164 +1,35 @@
-<!DOCTYPE html>
 <html>
-<head>
-  <style>
- :root {
-  --width: 300px;
-  --x-speed: 13s;
-  --y-speed: 7s;
-  --transition-speed: 2.2s;
-}
-
-.blob { 
-  width: var(--width);
-  height: var(--width);
-  background: #90A4AE;
-  transition: border-radius var(--transition-speed) linear;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
-}
-.blob-2 {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-.blob-2 .blob {
-  background: #B0BEC5;
-}
-
-body {
-  margin: 0;
-  overflow: hidden;
-  background: #546E7A;
-}
-
-.x {
-  animation: x var(--x-speed) linear infinite alternate;
-}
-.x2 {
-  animation: x2 var(--x-speed) linear infinite alternate;
-}
-.y {
-  animation: y var(--y-speed) linear infinite alternate;
-}
-
-@keyframes x {
-  100% {
-    transform: translateX(calc(100vw - var(--width)));
-  }
-}
-@keyframes x2 {
-  100% {
-    transform: translateX(calc(-100vw + var(--width)));
-  }
-}
-
-@keyframes y {
-  100% {
-    transform: translateY(calc(100vh - var(--width)));
-  }
-}
-
-
-.inputs {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 300px;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-}
-.inputs label {
-  flex: 1;
-}
-.inputs input {
-  width: 100%;
-}
-  </style>
-  
-    <body>
-    <div class="blob-wrap x">
-  <div class="blob y"></div>
-</div>
-
-<div class="blob-wrap blob-2 x2">
-  <div class="blob y"></div>
-</div>
-
-<div class="inputs">
-    <label>
-      Width
-      <input type="range" min="10" max="400" value="300" id="width-range">
-    </label>
-    <label>
-      X Speed
-      <input type="range" min="0.5" max="60" value="13" id="x-range">
-      </label>
-    <label>
-      Y-Speed
-      <input type="range" min="0.5" max="60" value="7" id="y-range">
-      </label>
-    <label>
-      Transition Speed
-      <input type="range" min="0.1" max="4" step="0.1" value="2.2" id="transition-speed">
-      </label>
-    <label>
-      Change Interval
-      <input type="range" min="200" max="3000" value="750" id="change-speed">
-      </label>
-</div>
+  <head>
+    <script type="application/javascript">
+      var ctx = null;
+      var x_icon = 0;
+      var y_icon = 0;
+      var stepX = 1;
+      var stepY = 1;
+      var size_x = 23;
+      var size_y = 22;
+      var canvas_size_x = 480;
+      var canvas_size_y = 320;
+      var anim_img = null;
       
-      <script>
-        
-  const blobs = document.querySelectorAll(".blob");
-let last = 0;
-let changeSpeed = 1500;
-let rAF;
-
-function render(now) {
-  if (!last || now - last >= changeSpeed) {
-    last = now;
-    blobs.forEach(blob => {
-      blob.style.borderTopLeftRadius = `${random()}px ${random()}px`;
-      blob.style.borderTopRightRadius = `${random()}px ${random()}px`;
-      blob.style.borderBottomLeftRadius = `${random()}px ${random()}px`;
-      blob.style.borderBottomRightRadius = `${random()}px ${random()}px`;
-    });
-  }
-  rAF = requestAnimationFrame(render);
-}
-
-const random = () => {
-  return Math.floor((Math.random() * 1000000));
-};
-
-render(last);
-
-const root = document.documentElement;
-
-const widthSlider = document.querySelector("#width-range");
-widthSlider.addEventListener("input", e => {
-  root.style.setProperty('--width', e.target.value + "px");
-})
-const xSlider = document.querySelector("#x-range");
-xSlider.addEventListener("input", e => {
-  root.style.setProperty('--x-speed', e.target.value + "s");
-})
-const ySlider = document.querySelector("#y-range");
-ySlider.addEventListener("input", e => {
-  root.style.setProperty('--y-speed', e.target.value + "s");
-})
-const transitionSlider = document.querySelector("#transition-speed");
-transitionSlider.addEventListener("input", e => {
-  root.style.setProperty('--transition-speed', e.target.value + "s");
-})
-const changeSlider = document.querySelector("#change-speed");
-transitionSlider.addEventListener("input", e => {
-  cancelAnimationFrame(rAF);
-  last = 0;
-  render(last);
-  changeSpeed = e.target.value;
-})
-      </script>
-</body>
+      function draw() {
+        var canvas = document.getElementById("canvas");
+        ctx = canvas.getContext("2d");
+        anim_img = new Image(size_x, size_y);
+        anim_img.onload = function() { setInterval('myAnimation()', 10); }
+        anim_img.src = 'assets/blackbird.png';
+      }
+      function myAnimation() {
+        ctx.clearRect(0, 0, canvas_size_x, canvas_size_y);
+       if (x_icon < 0 || x_icon > canvas_size_x - size_x) {stepX = -stepX; }
+       if (y_icon < 0 || y_icon > canvas_size_y - size_y) {stepY = -stepY; }
+          x_icon += stepX;
+          y_icon += stepY;
+       ctx.drawImage(anim_img, x_icon, y_icon);
+      }
+    </script>
+  </head>
+  <body onload="draw();">
+    <canvas id="canvas" width="480" height="320" style="border:solid 1px;"></canvas>
+  </body>
 </html>
