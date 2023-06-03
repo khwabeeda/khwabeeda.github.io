@@ -31,7 +31,8 @@
 <body>
   <div id="text">
     <h1>Your Text Goes Here</h1>
-    <p>Additional content...</p>
+    <p>Additional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional content
+    </p>
   </div>
 
   <div id="bird"></div>
@@ -57,7 +58,8 @@
         text.style.color = 'black';
       }
 
-      requestAnimationFrame(updateBirdPosition);
+      setTimeout(updateBirdPosition, 2000); // Adjust the timing here (in milliseconds)
+
     }
 
     function isOverlap(element1, element2) {
