@@ -8,71 +8,71 @@
       overflow: hidden;
     }
 
-    canvas {
-      display: block;
+    #text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+      color: black;
+      z-index: 2;
+    }
+
+    #bird {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background-image: url('assets/blackbird.png');
+      background-size: cover;
+      z-index: 1;
     }
   </style>
 </head>
 <body>
-  <canvas id="canvas"></canvas>
+  <div id="text">
+    <h1>Your Text Goes Here Your Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes HereYour Text Goes Here</h1>
+    <p>Additional content...</p>
+  </div>
+
+  <div id="bird"></div>
 
   <script>
-    var canvas = document.getElementById('canvas');
-    var context = canvas.getContext('2d');
-    var particles = [];
-    var particleCount = 1000;
+    var bird = document.getElementById('bird');
+    var text = document.getElementById('text');
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    function createParticle() {
-      var particle = {
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: Math.random() * 10 - 5,
-        vy: Math.random() * 10 - 5,
-        size: Math.random() * 5 + 1,
-        color: 'white'
-      };
-
-      particles.push(particle);
+    function getRandomPosition() {
+      var x = Math.random() * window.innerWidth;
+      var y = Math.random() * window.innerHeight;
+      return { x: x, y: y };
     }
 
-    function updateParticles() {
-      context.clearRect(0, 0, canvas.width, canvas.height);
+    function updateBirdPosition() {
+      var position = getRandomPosition();
+      bird.style.left = position.x + 'px';
+      bird.style.top = position.y + 'px';
 
-      for (var i = 0; i < particles.length; i++) {
-        var particle = particles[i];
-
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-
-        if (particle.x > canvas.width || particle.x < 0) {
-          particle.vx *= -1;
-        }
-
-        if (particle.y > canvas.height || particle.y < 0) {
-          particle.vy *= -1;
-        }
-
-        context.fillStyle = particle.color;
-        context.beginPath();
-        context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        context.closePath();
-        context.fill();
-      }
-    }
-
-    function loop() {
-      if (particles.length < particleCount) {
-        createParticle();
+      if (isOverlap(bird, text)) {
+        text.style.color = 'white';
+      } else {
+        text.style.color = 'black';
       }
 
-      updateParticles();
-      requestAnimationFrame(loop);
+      requestAnimationFrame(updateBirdPosition);
     }
 
-    loop();
+    function isOverlap(element1, element2) {
+      var rect1 = element1.getBoundingClientRect();
+      var rect2 = element2.getBoundingClientRect();
+
+      return (
+        rect1.left < rect2.right &&
+        rect1.right > rect2.left &&
+        rect1.top < rect2.bottom &&
+        rect1.bottom > rect2.top
+      );
+    }
+
+    updateBirdPosition();
   </script>
 </body>
 </html>
