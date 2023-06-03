@@ -12,21 +12,26 @@
     p {
       font-size: 24px;
       font-family: Arial, sans-serif;
+      color: black; /* Set the default text color to black */
+    }
+
+    .overlap {
+      color: white; /* Set the overlapping text color to white */
     }
   </style>
 </head>
 <body>
   <img id="image" src="assets/blackbird.png" alt="Bouncing Image">
 
-  <p id="text">This is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the image.</p>
+  <p id="text">This is some text that will appear in front of the image.This is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the imageThis is some text that will appear in front of the image</p>
   
   <script>
     var image = document.getElementById("image");
     var text = document.getElementById("text");
     var x = 0;
     var y = 0;
-    var vx = 2;
-    var vy = 2;
+    var vx = 5;
+    var vy = 5;
 
     function updatePosition() {
       x += vx;
@@ -46,9 +51,9 @@
       var overlap = !(textRect.right < x || textRect.left > x + image.width || textRect.bottom < y || textRect.top > y + image.height);
       
       if (overlap) {
-        text.style.color = "white";
+        text.classList.add("overlap"); // Apply the 'overlap' class to the text
       } else {
-        text.style.color = "black";
+        text.classList.remove("overlap"); // Remove the 'overlap' class from the text
       }
 
       requestAnimationFrame(updatePosition);
