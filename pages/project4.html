@@ -33,21 +33,9 @@
         top: 0;
         left: 0;
       }
-      25% {
-        top: calc(Math.random() * 100)vh;
-        left: calc(Math.random() * 100)vw;
-      }
-      50% {
-        top: calc(Math.random() * 100)vh;
-        left: calc(Math.random() * 100)vw;
-      }
-      75% {
-        top: calc(Math.random() * 100)vh;
-        left: calc(Math.random() * 100)vw;
-      }
       100% {
-        top: calc(Math.random() * 100)vh;
-        left: calc(Math.random() * 100)vw;
+        top: calc(Math.random() * (100 - 50) + 50)vh;
+        left: calc(Math.random() * (100 - 50) + 50)vw;
       }
     }
 
@@ -59,7 +47,7 @@
 <body>
   <div id="text">
     <h1>Your Text Goes Here</h1>
-    <p>Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.Additional content.</p>
+    <p>Additional content...</p>
   </div>
 
   <div id="bird"></div>
@@ -102,8 +90,8 @@
     }
 
     function getRandomPosition() {
-      var x = Math.random() * window.innerWidth;
-      var y = Math.random() * window.innerHeight;
+      var x = Math.random() * (window.innerWidth - 50);
+      var y = Math.random() * (window.innerHeight - 50);
       return { x: x, y: y };
     }
 
