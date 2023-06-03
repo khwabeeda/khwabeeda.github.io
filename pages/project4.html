@@ -16,12 +16,6 @@
       font-size: 24px;
       color: black;
       z-index: 2;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-image: url('assets/blackbird.png');
-      background-size: cover;
-      background-repeat: no-repeat;
-      mix-blend-mode: difference;
     }
 
     #bird {
@@ -33,24 +27,29 @@
       background-image: url('assets/blackbird.png');
       background-size: cover;
       z-index: 1;
-      animation: fly 5s infinite linear;
+      animation: fly 10s infinite linear;
     }
 
     @keyframes fly {
       0% {
-        transform: translate(0, 0);
+        top: 0;
+        left: 0;
       }
       25% {
-        transform: translate(200px, -200px);
+        top: 0;
+        left: calc(100vw - 50px);
       }
       50% {
-        transform: translate(400px, 0);
+        top: calc(100vh - 50px);
+        left: calc(100vw - 50px);
       }
       75% {
-        transform: translate(200px, 200px);
+        top: calc(100vh - 50px);
+        left: 0;
       }
       100% {
-        transform: translate(0, 0);
+        top: 0;
+        left: 0;
       }
     }
   </style>
@@ -58,7 +57,7 @@
 <body>
   <div id="text">
     <h1>Your Text Goes Here</h1>
-    <p>Additional content.Additional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional content..</p>
+    <p>Additional content...</p>
   </div>
 
   <div id="bird"></div>
