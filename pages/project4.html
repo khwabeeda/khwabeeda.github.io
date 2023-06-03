@@ -3,11 +3,64 @@
 <head>
   <style>
     body {
-      background-color: white;
-      margin: 0;
-      overflow: hidden;
-    }
+  margin: 0;
+}
 
+img, div {
+  width: $size;
+  height: $size;
+}
+
+.x {
+  animation: x 13s linear infinite alternate;
+}
+
+.y {
+  animation: y 7s linear infinite alternate;
+}
+
+@keyframes x {
+  100% {
+    transform: translateX( calc(100vw - #{$size}) );
+  }
+}
+
+@keyframes y {
+  100% {
+    transform: translateY( calc(100vh - #{$size}) );
+  }
+}
+View Compiled
+  
+:root {
+  --width: 300px;
+  --x-speed: 13s;
+  --y-speed: 7s;
+  --transition-speed: 2.2s;
+}
+
+.el { 
+  width: var(--width);
+  height: var(--width);
+}
+
+.x {
+  animation: x var(--x-speed) linear infinite alternate;
+}
+.y {
+  animation: y var(--y-speed) linear infinite alternate;
+}
+
+@keyframes x {
+  100% {
+    transform: translateX(calc(100vw - var(--width)));
+  }
+}
+@keyframes y {
+  100% {
+    transform: translateY(calc(100vh - var(--width)));
+  }
+}
     #text {
       position: absolute;
       top: 50%;
@@ -18,30 +71,8 @@
       z-index: 2;
     }
 
-    #bird {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      background-image: url('assets/blackbird.png');
-      background-size: cover;
-      z-index: 1;
-      animation: fly 5s infinite linear;
-    }
-
-    @keyframes fly {
-      0% {
-        top: 0;
-        left: 0;
-      }
-      100% {
-        top: calc(Math.random() * (100 - 50) + 50)vh;
-        left: calc(Math.random() * (100 - 50) + 50)vw;
-      }
-    }
-
-    .highlight {
-      color: white;
-    }
+   
+    
   </style>
 </head>
 <body>
@@ -49,53 +80,16 @@
     <h1>Your Text Goes Here</h1>
     <p>Additional content...</p>
   </div>
+  
+<div class="x">
+  <img class="y" src="assets/blackbird.png" alt="codepen" />
+</div>
+  
+  <div class="el-wrap x">
+  <div class="el y"></div>
+</div>
 
-  <div id="bird"></div>
+  
 
-  <script>
-    var bird = document.getElementById('bird');
-    var text = document.getElementById('text');
-
-    function isOverlap(element1, element2) {
-      var rect1 = element1.getBoundingClientRect();
-      var rect2 = element2.getBoundingClientRect();
-
-      return (
-        rect1.left < rect2.right &&
-        rect1.right > rect2.left &&
-        rect1.top < rect2.bottom &&
-        rect1.bottom > rect2.top
-      );
-    }
-
-    function updateBirdPosition() {
-      var position = getRandomPosition();
-      bird.style.top = position.y + 'px';
-      bird.style.left = position.x + 'px';
-
-      var letters = text.getElementsByTagName('h1')[0].innerHTML.split('');
-      var highlightedLetters = '';
-
-      for (var i = 0; i < letters.length; i++) {
-        if (isOverlap(bird, text.getElementsByTagName('h1')[0].childNodes[i])) {
-          highlightedLetters += '<span class="highlight">' + letters[i] + '</span>';
-        } else {
-          highlightedLetters += letters[i];
-        }
-      }
-
-      text.getElementsByTagName('h1')[0].innerHTML = highlightedLetters;
-
-      requestAnimationFrame(updateBirdPosition);
-    }
-
-    function getRandomPosition() {
-      var x = Math.random() * (window.innerWidth - 50);
-      var y = Math.random() * (window.innerHeight - 50);
-      return { x: x, y: y };
-    }
-
-    updateBirdPosition();
-  </script>
 </body>
 </html>
