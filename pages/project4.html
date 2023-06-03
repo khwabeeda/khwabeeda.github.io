@@ -8,129 +8,30 @@
       width: 40%;
       z-index: -1;
     }
+
     p {
-      font-size: 24px; /* Increase the font size to 24 pixels */
-      font-family: Arial, sans-serif; /* Change the font to Arial or a fallback sans-serif font */
+      font-size: 24px;
+      font-family: Arial, sans-serif;
     }
   </style>
 </head>
 <body>
- <p> what if i start typing here
-  
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-   
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-   i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-   
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-   i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-   
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  what if i start typing here
-  </p>
   <img id="image" src="assets/blackbird.png" alt="Bouncing Image">
+
+  <p id="text">This is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the imageis is some text that will appear in front of the image.</p>
   
   <script>
-    // Get the image element
     var image = document.getElementById("image");
-
-    // Set initial position and velocity
+    var text = document.getElementById("text");
     var x = 0;
     var y = 0;
     var vx = 5;
     var vy = 5;
 
-    // Function to update the image position
     function updatePosition() {
-      // Update the position
       x += vx;
       y += vy;
 
-      // Reverse the velocity if the image reaches the boundaries
       if (x + image.width >= window.innerWidth || x <= 0) {
         vx = -vx;
       }
@@ -138,15 +39,21 @@
         vy = -vy;
       }
 
-      // Set the new position
       image.style.left = x + "px";
       image.style.top = y + "px";
 
-      // Call the function again after a short delay
+      var textRect = text.getBoundingClientRect();
+      var overlap = !(textRect.right < x || textRect.left > x + image.width || textRect.bottom < y || textRect.top > y + image.height);
+      
+      if (overlap) {
+        text.style.color = "white";
+      } else {
+        text.style.color = "black";
+      }
+
       requestAnimationFrame(updatePosition);
     }
 
-    // Call the function to start the animation
     updatePosition();
   </script>
 </body>
