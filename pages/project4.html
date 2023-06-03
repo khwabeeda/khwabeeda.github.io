@@ -1,25 +1,42 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <title>Eve's Penis</title>
-   </head>
-   <body>
-      <style>
-body {
-  background-image: url('/Users/sumitkumar/Desktop/bgrnd.png');
-  background-repeat: no-repeat;
-background-size: 40% 100%;
-   font-family: courier;
-}
-</style>
-<a href="https://khwabeeda.github.io/">
-         <img alt="Qries" src="assets/title.png"
-         width=300" height="130">
-</a>
-                                <h1>The Bird with the Broken Leg </h1> <br> 
+<head>
+  <style>
+    body {
+      background-color: black;
+      margin: 0;
+      overflow: hidden;
+      color: white;
+    }
+
+    #text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 2;
+    }
+
+    #tree {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 200px;
+      height: 300px;
+      background-image: url('assets/tree.png');
+      background-size: cover;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div id="text">
+   <h1>The Bird with the Broken Leg </h1> <br> 
                                  
 
-<p1><br>What is the loss of a leg to her. She. The majestic, the beautiful, she who can fly. What is the loss of a leg to her,the eloquent one who can fly. <br>What is this loss but just a slight inconvenience to her? <br></p1>
+<p1><br>What is the loss of a leg to her. She. The majestic, the beautiful, she who can fly. What is the loss of a leg to her, the eloquent one who can fly. <br>What is this loss but just a slight inconvenience to her? <br></p1>
 <br>
 <p2><br>She has never roamed the grounds like the unfortunate flightless! Like the horrid ones stuck between the Ohs and the Ahs! This is Kishtwar. It is a <br>small valley, surrounded by huge magnificent mountains. Early morning you can hear the echo of the temple bells, and throughout the day you can lose <br>yourself in the hymns of azan. The peaks are always covered in a bit of white, and the ground in a bit of red. </p2>
 <br>
@@ -42,6 +59,47 @@ background-size: 40% 100%;
                               <br>  <p9><strong><em>Chirp chirp chirp chirp. Chirp! Chirp chirp chirp!? Chirp!</strong></em></p9> <br>
 <br>
                            <br>    <p10> They are mostly about breathing. </p10>
- 
-   </body>
+  </div>
+
+  <div id="tree"></div>
+
+  <script>
+    document.addEventListener('mousemove', handleMove);
+    document.addEventListener('touchmove', handleMove);
+
+    function handleMove(event) {
+      var touchEvent = event.type.startsWith('touch');
+      var x = touchEvent ? event.touches[0].clientX : event.clientX;
+      var y = touchEvent ? event.touches[0].clientY : event.clientY;
+
+      var tree = document.getElementById('tree');
+      tree.style.left = x + 'px';
+      tree.style.top = y + 'px';
+
+      var text = document.getElementById('text');
+      var rect = text.getBoundingClientRect();
+      var textTop = rect.top + window.pageYOffset;
+      var textBottom = rect.bottom + window.pageYOffset;
+
+      if (y > textTop && y < textBottom) {
+        text.style.color = 'white';
+      } else {
+        text.style.color = '';
+      }
+
+      if (x % 2 === 0) {
+        shake();
+      }
+    }
+
+    function shake() {
+      var tree = document.getElementById('tree');
+      tree.classList.add('shake');
+
+      setTimeout(function() {
+        tree.classList.remove('shake');
+      }, 100);
+    }
+  </script>
+</body>
 </html>
