@@ -22,12 +22,10 @@
       position: absolute;
       width: 50px;
       height: 50px;
-      top: 0;
-      left: 0;
       background-image: url('assets/blackbird.png');
       background-size: cover;
       z-index: 1;
-      animation: fly 10s infinite linear;
+      animation: fly 5s infinite linear;
     }
 
     @keyframes fly {
@@ -36,20 +34,20 @@
         left: 0;
       }
       25% {
-        top: 0;
-        left: calc(100vw - 50px);
+        top: calc(Math.random() * 100)vh;
+        left: calc(Math.random() * 100)vw;
       }
       50% {
-        top: calc(100vh - 50px);
-        left: calc(100vw - 50px);
+        top: calc(Math.random() * 100)vh;
+        left: calc(Math.random() * 100)vw;
       }
       75% {
-        top: calc(100vh - 50px);
-        left: 0;
+        top: calc(Math.random() * 100)vh;
+        left: calc(Math.random() * 100)vw;
       }
       100% {
-        top: 0;
-        left: 0;
+        top: calc(Math.random() * 100)vh;
+        left: calc(Math.random() * 100)vw;
       }
     }
 
@@ -61,7 +59,7 @@
 <body>
   <div id="text">
     <h1>Your Text Goes Here</h1>
-    <p>Additional content...</p>
+    <p>Additional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional content.</p>
   </div>
 
   <div id="bird"></div>
@@ -84,8 +82,8 @@
 
     function updateBirdPosition() {
       var position = getRandomPosition();
-      bird.style.left = position.x + 'px';
       bird.style.top = position.y + 'px';
+      bird.style.left = position.x + 'px';
 
       var letters = text.getElementsByTagName('h1')[0].innerHTML.split('');
       var highlightedLetters = '';
