@@ -25,56 +25,34 @@
       background-image: url('assets/blackbird.png');
       background-size: cover;
       z-index: 1;
+      animation: fly 5s infinite linear;
+    }
+
+    @keyframes fly {
+      0% {
+        transform: translate(0, 0);
+      }
+      25% {
+        transform: translate(200px, -200px);
+      }
+      50% {
+        transform: translate(400px, 0);
+      }
+      75% {
+        transform: translate(200px, 200px);
+      }
+      100% {
+        transform: translate(0, 0);
+      }
     }
   </style>
 </head>
 <body>
   <div id="text">
     <h1>Your Text Goes Here</h1>
-    <p>Additional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional contentAdditional content
-    </p>
+    <p>Additional content...</p>
   </div>
 
   <div id="bird"></div>
-
-  <script>
-    var bird = document.getElementById('bird');
-    var text = document.getElementById('text');
-
-    function getRandomPosition() {
-      var x = Math.random() * window.innerWidth;
-      var y = Math.random() * window.innerHeight;
-      return { x: x, y: y };
-    }
-
-    function updateBirdPosition() {
-      var position = getRandomPosition();
-      bird.style.left = position.x + 'px';
-      bird.style.top = position.y + 'px';
-
-      if (isOverlap(bird, text)) {
-        text.style.color = 'white';
-      } else {
-        text.style.color = 'black';
-      }
-
-      setTimeout(updateBirdPosition, 2000); // Adjust the timing here (in milliseconds)
-
-    }
-
-    function isOverlap(element1, element2) {
-      var rect1 = element1.getBoundingClientRect();
-      var rect2 = element2.getBoundingClientRect();
-
-      return (
-        rect1.left < rect2.right &&
-        rect1.right > rect2.left &&
-        rect1.top < rect2.bottom &&
-        rect1.bottom > rect2.top
-      );
-    }
-
-    updateBirdPosition();
-  </script>
 </body>
 </html>
