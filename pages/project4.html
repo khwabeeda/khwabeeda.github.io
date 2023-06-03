@@ -52,6 +52,10 @@
         left: 0;
       }
     }
+
+    .highlight {
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -61,5 +65,51 @@
   </div>
 
   <div id="bird"></div>
+
+  <script>
+    var bird = document.getElementById('bird');
+    var text = document.getElementById('text');
+
+    function isOverlap(element1, element2) {
+      var rect1 = element1.getBoundingClientRect();
+      var rect2 = element2.getBoundingClientRect();
+
+      return (
+        rect1.left < rect2.right &&
+        rect1.right > rect2.left &&
+        rect1.top < rect2.bottom &&
+        rect1.bottom > rect2.top
+      );
+    }
+
+    function updateBirdPosition() {
+      var position = getRandomPosition();
+      bird.style.left = position.x + 'px';
+      bird.style.top = position.y + 'px';
+
+      var letters = text.getElementsByTagName('h1')[0].innerHTML.split('');
+      var highlightedLetters = '';
+
+      for (var i = 0; i < letters.length; i++) {
+        if (isOverlap(bird, text.getElementsByTagName('h1')[0].childNodes[i])) {
+          highlightedLetters += '<span class="highlight">' + letters[i] + '</span>';
+        } else {
+          highlightedLetters += letters[i];
+        }
+      }
+
+      text.getElementsByTagName('h1')[0].innerHTML = highlightedLetters;
+
+      requestAnimationFrame(updateBirdPosition);
+    }
+
+    function getRandomPosition() {
+      var x = Math.random() * window.innerWidth;
+      var y = Math.random() * window.innerHeight;
+      return { x: x, y: y };
+    }
+
+    updateBirdPosition();
+  </script>
 </body>
 </html>
