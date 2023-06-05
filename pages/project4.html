@@ -18,6 +18,8 @@ body {
       font-size: 50px; 
       font-family: Georgia; 
       color: red;
+    position: relative;
+      min-height: 100vh;
     }
     
       @media only screen and (max-width: 600px) {
@@ -31,6 +33,32 @@ body {
          .line-height-example {
     line-height: 2; 
   }
+        footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+
+    .footer-button {
+      width: 30px;
+      height: 30px;
+    }
+
+   .left-button {
+      margin-right: auto;
+    
+    }
+
+    .right-button {
+      margin-left: auto;
+    }  
         
   </style>
 </head>
@@ -59,6 +87,14 @@ And then one day, she lands on the tree that shades my despair, and then she tal
                             <strong><em>"Chirp chirp chirp chirp. Chirp! Chirp chirp chirp!? Chirp!"</strong></em>
 <br>
                           They are mostly about breathing. </p>
+   <footer>
+    <a href="project3.html">
+      <img src="nav3.png" class="footer-button left-button" alt="Left Button">
+    </a>
+    <a href="work.html">
+      <img src="nav5.png" class="footer-button right-button" alt="Right Button">
+    </a>
+  </footer>
   
   <script>
     // JavaScript code remains the same
