@@ -22,9 +22,11 @@
     @keyframes cloudMove {
       0% {
         transform: translateX(100%);
+        opacity: 1;
       }
       100% {
         transform: translateX(-100%);
+        opacity: 1;
       }
     }
 
@@ -38,8 +40,8 @@
     }
 
     .image-line img {
-      width: 100px;
-      height: 100px;
+      width: 500px;
+      height: 500px;
       margin-right: 5px;
       object-fit: cover;
     }
@@ -70,23 +72,20 @@
   </div>
 
   <script>
-    // JavaScript for cloud animation
-    $(document).ready(function () {
-      var clouds = $('.cloud');
-      var cloudContainer = $('.cloud-container');
+    document.addEventListener('DOMContentLoaded', function() {
+      var clouds = document.querySelectorAll('.cloud');
 
       function resetCloudPosition(cloud) {
-        cloud.css('transform', 'translateX(100%)');
+        cloud.style.transform = 'translateX(100%)';
       }
 
       function animateClouds() {
-        clouds.each(function () {
-          var cloud = $(this);
-          var cloudWidth = cloud.outerWidth();
-          var containerWidth = cloudContainer.outerWidth();
+        clouds.forEach(function(cloud) {
+          var cloudWidth = cloud.offsetWidth;
+          var containerWidth = cloud.parentNode.offsetWidth;
           var duration = (containerWidth + cloudWidth) / cloudWidth * 10;
 
-          cloud.css('animation-duration', duration + 's');
+          cloud.style.animationDuration = duration + 's';
           resetCloudPosition(cloud);
         });
       }
