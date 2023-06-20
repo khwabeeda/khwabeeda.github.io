@@ -74,26 +74,28 @@
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var clouds = document.querySelectorAll('.cloud');
+   // JavaScript for cloud animation
+  var clouds = document.querySelectorAll('.cloud');
+  var cloudContainer = document.querySelector('.cloud-container');
 
-      function resetCloudPosition(cloud) {
-        cloud.style.transform = 'translateX(100%)';
-      }
+  function resetCloudPosition(cloud) {
+    cloud.style.transform = 'translateX(100%)';
+  }
 
-      function animateClouds() {
-        clouds.forEach(function(cloud) {
-          var cloudWidth = cloud.offsetWidth;
-          var containerWidth = cloud.parentNode.offsetWidth;
-          var duration = (containerWidth + cloudWidth) / cloudWidth * 10;
+  function animateClouds() {
+    clouds.forEach(function(cloud, index) {
+      var cloudWidth = cloud.offsetWidth;
+      var containerWidth = cloudContainer.offsetWidth;
+      var duration = (containerWidth + cloudWidth) / cloudWidth * 10;
+      var delay = index * 2; // Adjust the delay value to control the staggered effect
 
-          cloud.style.animationDuration = duration + '1s';
-          resetCloudPosition(cloud);
-        });
-      }
-
-      animateClouds();
+      cloud.style.animationDuration = duration + 's';
+      cloud.style.animationDelay = delay + 's';
+      resetCloudPosition(cloud);
     });
+  }
+
+  animateClouds();
   </script>
 </body>
 </html>
