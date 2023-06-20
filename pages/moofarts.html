@@ -2,12 +2,13 @@
 <html>
 <head>
   <title>MooFarts</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     /* CSS for cloud animation */
     .cloud-container {
       position: relative;
       overflow: hidden;
-      height: 200px;
+      height: 200px; /* Adjust the height as needed */
     }
 
     .cloud {
@@ -19,10 +20,10 @@
     }
 
     @keyframes cloudMove {
-      from {
+      0% {
         transform: translateX(100%);
       }
-      to {
+      100% {
         transform: translateX(-100%);
       }
     }
@@ -37,8 +38,8 @@
     }
 
     .image-line img {
-      width: 500px;
-      height: 500px;
+      width: 100px;
+      height: 100px;
       margin-right: 5px;
       object-fit: cover;
     }
@@ -52,7 +53,7 @@
   </div>
 
   <div class="image-line">
-    <!-- Repeat the image tag below 100 times -->
+    <!-- Repeat the image tags below for up to 50 images -->
     <img src="assets/moo1.jpg" alt="Image 1">
     <img src="assets/moo2.jpg" alt="Image 2">
     <img src="assets/moo3.jpg" alt="Image 3">
@@ -60,39 +61,38 @@
     <img src="assets/moo5.jpg" alt="Image 5">
     <img src="assets/moo6.jpg" alt="Image 6">
      <img src="assets/moo7.jpg" alt="Image 7">
-  <img src="assets/moo8.jpg" alt="Image 8">
-  <img src="assets/moo9.jpg" alt="Image 9">
-  <img src="assets/moo10.jpg" alt="Image 10">
-  <img src="assets/moo11.jpg" alt="Image 11">
- 
+    <img src="assets/moo8.jpg" alt="Image 8">
+    <img src="assets/moo9.jpg" alt="Image 9">
+    <img src="assets/moo10.jpg" alt="Image 10">
+    <img src="assets/moo11.jpg" alt="Image 11">
   
-    <!-- Repeat the image tag above 100 times -->
+    <!-- ... Repeat the image tags above up to 50 -->
   </div>
 
-  
-   <script>
+  <script>
     // JavaScript for cloud animation
-    var clouds = document.querySelectorAll('.cloud');
-    var cloudContainer = document.querySelector('.cloud-container');
+    $(document).ready(function () {
+      var clouds = $('.cloud');
+      var cloudContainer = $('.cloud-container');
 
-    function resetCloudPosition(cloud) {
-      cloud.style.transform = 'translateX(100%)';
-    }
-
-    function animateClouds() {
-      for (var i = 0; i < clouds.length; i++) {
-        var cloud = clouds[i];
-        var cloudWidth = cloud.offsetWidth;
-        var containerWidth = cloudContainer.offsetWidth;
-        var duration = (containerWidth / cloudWidth) * 10;
-
-        cloud.style.animationDuration = duration + 's';
-        resetCloudPosition(cloud);
+      function resetCloudPosition(cloud) {
+        cloud.css('transform', 'translateX(100%)');
       }
-    }
 
-    animateClouds();
+      function animateClouds() {
+        clouds.each(function () {
+          var cloud = $(this);
+          var cloudWidth = cloud.outerWidth();
+          var containerWidth = cloudContainer.outerWidth();
+          var duration = (containerWidth + cloudWidth) / cloudWidth * 10;
+
+          cloud.css('animation-duration', duration + 's');
+          resetCloudPosition(cloud);
+        });
+      }
+
+      animateClouds();
+    });
   </script>
-  
 </body>
 </html>
