@@ -2,35 +2,33 @@
 <html>
 <head>
   <title>MooFarts</title>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
   <style>
-    /* CSS for cloud animation */
-    .cloud-container {
-      position: relative;
-      overflow: hidden;
-      height: 250px; 
-      width: 1000px;
-    }
+    
+  $size: 100px;
+    
+img, div {
+  width: $size;
+  height: $size;
+}
 
-    .cloud {
-      position: absolute;
-      top: 0;
-      left: -100;
-      animation: cloudMove linear infinite;
-      animation-duration: 1s;
-      width: 200px; /* Adjust the width as needed */
-      height: auto;
-    }
+.x {
+  animation: x 13s linear infinite alternate;
+}
 
-   @keyframes cloudMove {
-  0% {
-    transform: translateX(100%);
-  }
-  50% {
-    transform: translateX(-100%);
-  }
+.y {
+  animation: y 7s linear infinite alternate;
+}
+
+@keyframes x {
   100% {
-    transform: translateX(100%);
+    transform: translateX( calc(100vw - #{$size}) );
+  }
+}
+
+@keyframes y {
+  100% {
+    transform: translateY( calc(100vh - #{$size}) );
   }
 }
 
@@ -52,11 +50,11 @@
   </style>
 </head>
 <body>
-  <div class="cloud-container">
-    <img class="cloud" src="assets/cloud1.png" alt="Moving Cloud 1">
-    <img class="cloud" src="assets/cloud2.png" alt="Moving Cloud 2">
-    <img class="cloud" src="assets/cloud3.png" alt="Moving Cloud 3">
-  </div>
+  div class="x">
+  <img class="y" src="assets/cloud1.png" alt="cloud" />
+   <img class="y" src="assets/cloud2.png" alt="cloud" />
+   <img class="y" src="assets/cloud3.png" alt="cloud" />
+</div>
 
   <div class="image-line">
     <!-- Repeat the image tags below for up to 50 images -->
