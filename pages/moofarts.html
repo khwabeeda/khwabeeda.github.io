@@ -67,9 +67,30 @@
     <!-- Repeat the image tag above 100 times -->
   </div>
 
-  <script>
+  
+   <script>
     // JavaScript for cloud animation
-    // ...
+    var clouds = document.querySelectorAll('.cloud');
+    var cloudContainer = document.querySelector('.cloud-container');
+
+    function resetCloudPosition(cloud) {
+      cloud.style.transform = 'translateX(100%)';
+    }
+
+    function animateClouds() {
+      for (var i = 0; i < clouds.length; i++) {
+        var cloud = clouds[i];
+        var cloudWidth = cloud.offsetWidth;
+        var containerWidth = cloudContainer.offsetWidth;
+        var duration = (containerWidth / cloudWidth) * 10;
+
+        cloud.style.animationDuration = duration + 's';
+        resetCloudPosition(cloud);
+      }
+    }
+
+    animateClouds();
   </script>
+  
 </body>
 </html>
