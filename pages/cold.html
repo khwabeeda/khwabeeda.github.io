@@ -6,11 +6,18 @@
        body {
             background-image: url("https://github.com/khwabeeda/khwabeeda.github.io/blob/main/pages/assets/windows.png?raw=true");
             background-size: cover; /* Adjust as needed */
-            margin: 0;
+           background-repeat: no-repeat;
+           margin: 0;
             padding: 0;
         }
 
-
+ @media (max-width: 768px) {
+            /* Apply different background properties for screens up to 768px wide (e.g., mobile devices) */
+            body {
+                background-size: contain; /* Adjust the size as needed */
+            }
+        }
+        
         .draggable {
             position: absolute;
             cursor: move;
