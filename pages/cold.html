@@ -1,62 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>90's Windows Aesthetic</title>
-  <style>
-    body {
-      background-color: #5F9EA0;
-      font-family: "Arial", sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+    <style>
 
-    .window {
-      background-color: #CCB7BE;
-      border: 2px solid #000;
-      padding: 10px;
-      width: 300px;
-      text-align: center;
-      box-shadow: 5px 5px 10px #888888;
-    }
+       body {
+            background-image: url("path_to_your_image.jpg");
+            background-size: cover; /* Adjust as needed */
+            margin: 0;
+            padding: 0;
+        }
 
-    .title-bar {
-      background-color: #000;
-      color: #fff;
-      padding: 5px;
-      text-align: center;
-      font-weight: bold;
-    }
 
-    .content {
-      padding: 10px;
-    }
+        .draggable {
+            position: absolute;
+            cursor: move;
+        }
+    </style>
+    <script>
+        function dragElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            elmnt.addEventListener("mousedown", dragMouseDown);
+            elmnt.addEventListener("touchstart", dragTouchStart);
 
-    .button {
-      background-color: #000;
-      color: #fff;
-      padding: 5px 10px;
-      border: none;
-      cursor: pointer;
-    }
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
 
-    .button:hover {
-      background-color: #555;
-    }
-  </style>
+            function dragTouchStart(e) {
+                if (e.targetTouches.length === 1) {
+                    var touch = e.targetTouches[0];
+                    pos3 = touch.clientX;
+                    pos4 = touch.clientY;
+                    document.ontouchend = closeDragElement;
+                    document.ontouchmove = elementDrag;
+                }
+            }
+
+            function elementDrag(e) {
+                if (e.type === "mousemove") {
+                    e.preventDefault();
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                } else if (e.type === "touchmove" && e.targetTouches.length === 1) {
+                    e.preventDefault();
+                    var touch = e.targetTouches[0];
+                    pos1 = pos3 - touch.clientX;
+                    pos2 = pos4 - touch.clientY;
+                    pos3 = touch.clientX;
+                    pos4 = touch.clientY;
+                }
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement(e) {
+                document.onmouseup = null;
+                document.onmousemove = null;
+                document.ontouchend = null;
+                document.ontouchmove = null;
+            }
+        }
+    </script>
 </head>
 <body>
-  <div class="window">
-    <div class="title-bar">Windows 95</div>
-    <div class="content">
-      <p>Welcome to the 90's!</p>
-      <img src="https://via.placeholder.com/200" alt="90's Image">
-      <p>If I ever stumble upon a time machine [I say stumble because for one to build a time machine one has to first be a dedicated "scientist" and an unbending "rational", I am neither, I am more of a metaphorically tragic physicist of plants and leaves and flowers] I would with no doubt travel to back to that moment in time and space when all the universe's matter was concentrated in a single futile point [when life was simple] before it began its devastating vast expansion into space. </p>
-      <button class="button">OK</button>
-    </div>
-  </div>
+    <img id="image1" class="draggable" src="path_to_image1.jpg" style="top: 100px; left: 100px;" width="200" height="200">
+    <img id="image2" class="draggable" src="path_to_image2.jpg" style="top: 300px; left: 300px;" width="200" height="200">
+    <!-- Add more images as needed -->
+
+    <script>
+        // Make images draggable
+        var draggableImages = document.getElementsByClassName("draggable");
+        for (var i = 0; i < draggableImages.length; i++) {
+            dragElement(draggableImages[i]);
+        }
+    </script>
 </body>
 </html>
