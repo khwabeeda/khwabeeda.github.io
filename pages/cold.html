@@ -4,10 +4,7 @@
     <style>
 
        body {
-            background-image: url("https://github.com/khwabeeda/khwabeeda.github.io/blob/main/pages/assets/windows.png?raw=true");
-            background-size: cover; /* Adjust as needed */
-           background-repeat: no-repeat;
-           margin: 0;
+            background-color: grey;
             padding: 0;
         }
 
@@ -22,6 +19,36 @@
             position: absolute;
             cursor: move;
         }
+
+          .moving-strip {
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            background-color: #3498db; /* Color of the strip */
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            font-size: 18px;
+            animation: moveStrip 8s linear infinite; /* Animation settings */
+        }
+
+        @keyframes moveStrip {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Additional styles */
+        header {
+            position: relative;
+            height: 50px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            height: 50px;
+        }
+        
     </style>
     <script>
         function dragElement(elmnt) {
@@ -77,6 +104,10 @@
     </script>
 </head>
 <body>
+        <header>
+        <div class="moving-strip">Header Text</div>
+    </header>
+    
     <img id="image1" class="draggable" src="assets/cold1.png" style="top: 100px; left: 800px;" width="400" height="400">
     <img id="image2" class="draggable" src="assets/cold2.png" style="top: 120px; left: 790px;" width="400" height="400">
     <img id="image3" class="draggable" src="assets/cold3.png" style="top: 130px; left: 780px;" width="400" height="400">
@@ -85,7 +116,7 @@
     <img id="image6" class="draggable" src="assets/cold6.jpg" style="top: 350px; left: 100px;" width="200">
     <img id="image7" class="draggable" src="assets/cold7.png" style="top: 400px; left: 100px;" width="300">
    
-  
+
 
     <script>
         // Make images draggable
@@ -94,5 +125,8 @@
             dragElement(draggableImages[i]);
         }
     </script>
+      <footer>
+        <div class="moving-strip">Footer Text</div>
+    </footer>
 </body>
 </html>
