@@ -1,40 +1,78 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>of love and farts</title>
-   </head>
-   <body>
-<style>
-      footer {
-  text-align: left;
-  color: red;
-      font-family: courier;
-      font-size: 10px;
-}
-     
-   
-   h1 {
-      color: white;
-      font-family: courier;
-   }
-   
-body {
-  background-image: url('pages/assets/bg.jpg');
-  background-repeat: no-repeat;
-background-size: 40% 100%;
-   font-family: courier;
-}
+      <style>
+        body {
+            background-color: #B0E0E6;
+            margin: 0;
+            padding: 0;
+            font: Georgia;
+            font-size: 200px;
+            color: red;
+        }
 
-   .title {
-      padding: 5px;
-          background-color: black;
-      width: 100%;
-      font-color: white;
-      font-size: 30px;
-      font-family: courier;
-   }
-   
-</style>
+        .draggable {
+            position: absolute;
+            cursor: move;
+        }
+    </style>
+    <script>
+        function dragElement(elmnt) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+            elmnt.addEventListener("mousedown", dragMouseDown);
+            elmnt.addEventListener("touchstart", dragTouchStart);
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function dragTouchStart(e) {
+                if (e.targetTouches.length === 1) {
+                    var touch = e.targetTouches[0];
+                    pos3 = touch.clientX;
+                    pos4 = touch.clientY;
+                    document.ontouchend = closeDragElement;
+                    document.ontouchmove = elementDrag;
+                }
+            }
+
+            function elementDrag(e) {
+                if (e.type === "mousemove") {
+                    e.preventDefault();
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                } else if (e.type === "touchmove" && e.targetTouches.length === 1) {
+                     e.preventDefault(); 
+                    var touch = e.targetTouches[0];
+                    pos1 = pos3 - touch.clientX;
+                    pos2 = pos4 - touch.clientY;
+                    pos3 = touch.clientX;
+                    pos4 = touch.clientY;
+                }
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+                document.ontouchend = null;
+                document.ontouchmove = null;
+            }
+        }
+    </script>
+</head>
+
+   <body>
+
+
       
       
 <div class="row">
@@ -113,7 +151,17 @@ And I fart better than I fuck.”  <br>
                                 <em>-Charles Bukowsky, Farting Is Much Like Fucking </strong></em>
 
  <br>
+       <img id="image1" class="draggable" src="assets/LFTitle.png" style="top: 300px; left: 300px;" width="200">
+    <img id="image2" class="draggable" src="assets/LF1.png" style="top: 1200px; left: 300px;" width="200">
+    <img id="image3" class="draggable" src="assets/LFH.png" style="top: 2000px; left: 200px;" width="200">
       
+       <script>
+        // Make images draggable
+        var draggableImages = document.getElementsByClassName("draggable");
+        for (var i = 0; i < draggableImages.length; i++) {
+            dragElement(draggableImages[i]);
+        }
+    </script>
       <footer>
          <p> <a href="https://khwabeeda.github.io/>Home</a><p>
    </body>
